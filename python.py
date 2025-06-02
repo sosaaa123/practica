@@ -7,8 +7,11 @@ from fastapi.middleware.cors import CORSMiddleware #me permite habilitar origene
 app = FastAPI()
 
 
-origenes = ["http://127.0.0.1:5500"] #por live server
- #el origen de la pagina que va a realizar la consulta
+origenes = ["http://127.0.0.1:5500",
+            "https://pagina-practica.vercel.app/"
+] 
+
+#el origen de la pagina que va a realizar la consulta
 
 app.add_middleware(
     CORSMiddleware,
