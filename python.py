@@ -8,7 +8,7 @@ app = FastAPI()
 
 
 origenes = ["http://127.0.0.1:5500",
-            "https://pagina-practica.vercel.app/"
+            "https://pagina-practica.vercel.app"
 ] 
 
 #el origen de la pagina que va a realizar la consulta
