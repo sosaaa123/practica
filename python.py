@@ -139,8 +139,8 @@ async def main():
 #eliminarProducto(2)
 #print(productos())
 #IncrementarStock(1, 100)
-print(verProductoId(100))
-print(verProductosNombre("pionono"))
+#print(verProductoId(100))
+#print(verProductosNombre("pionono"))
 #restarStock(1,100)
 
 
