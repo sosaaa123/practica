@@ -2,7 +2,7 @@ import sqlite3
 import psycopg2
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware #me permite habilitar origenes que hagan consultas al backened
-
+from fastapi import Request
 #dpg-d0vp1cggjchc73a0mqkg-a hostname
 #host 127.0.0.1
 #ya me conecte a la bd queme dio render(visualizar en pgAdmin 4)
@@ -129,9 +129,20 @@ async def main():
     return answer
     
 
+@app.post("/ingresar")
+def recibirProducto(request:Request):
+    data = request.json()
+
+    nombre = data["nombre"]
+    precio = data["precio"]
+    stock = dara["stock"]
+
+    insertarProductos(nombre,precio,stock)
+    return {"mensaje":"se ha ingresado correctamente"}
 
 
 
+#insertarProductos("ojeda", 122222, 12)
 
 
 #print(productos())
