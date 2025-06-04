@@ -127,6 +127,7 @@ def restarStock(idProducto, restockeo):
 async def main():
     answer = productos()
     return answer
+    
 
 
 
@@ -144,5 +145,3 @@ async def main():
 #restarStock(1,100)
 
 
-cursor.close()
-conexion.close()
