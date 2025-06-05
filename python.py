@@ -83,7 +83,7 @@ def transDic(respuesta):
 
 def verProductoId(id):
     cursor.execute("SELECT * FROM productos WHERE id_producto = %s", (id,))
-
+    respuesta = cursor.fetchall()
     return transDic(respuesta)
    
 
@@ -148,7 +148,7 @@ def recibirProducto(producto: Producto):
 
 
 class ProductoId(BaseModel):
-    id: str
+    id: int
 
 @app.post("/borrar")
 def borrarProducto(producto:ProductoId):
