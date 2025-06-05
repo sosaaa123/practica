@@ -132,8 +132,8 @@ async def main():
 #Uso pydantic para verificar que lo que recibo es el tipo de varibale que espero
 class Producto(BaseModel):
     nombre: str
-    precio: str
-    stock: str
+    precio: int
+    stock: int
 
 
 
