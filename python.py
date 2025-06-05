@@ -83,10 +83,9 @@ def transDic(respuesta):
 
 def verProductoId(id):
     cursor.execute("SELECT * FROM productos WHERE id_producto = %s", (id,))
-    if (respuesta != []):
-        return transDic(respuesta)
-    else:
-        return {"mensaje" : "no se han encontrado productos"}
+
+    return transDic(respuesta)
+   
 
 def verProductosNombre(nombre):
     cursor.execute("SELECT * FROM productos WHERE nombre = %s", (nombre,))
@@ -131,6 +130,7 @@ async def main():
 
 #Uso pydantic para verificar que lo que recibo es el tipo de varibale que espero
 class Producto(BaseModel):
+    id : int
     nombre: str
     precio: int
     stock: int
@@ -145,6 +145,18 @@ def recibirProducto(producto: Producto):
 
     insertarProductos(nombre,precio,stock)
     return {"mensaje":"se ha ingresado correctamente"}
+
+
+@app.post("/borrar")
+def borrarProducto(producto:Producto):
+    id = producto.id
+    respuesta = verProductoId(id)
+    if (respuesta):
+        eliminarProducto(id)
+        return {"mensaje": "producto eliminado correctamente"}
+    else:
+        return {"mensaje" : "no se han encontrado productos con ese id"}
+    
 
 
 
