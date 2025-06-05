@@ -2,7 +2,7 @@ import sqlite3
 import psycopg2
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware #me permite habilitar origenes que hagan consultas al backened
-from fastapi import Request
+from pydantic import BaseModel
 #dpg-d0vp1cggjchc73a0mqkg-a hostname
 #host 127.0.0.1
 #ya me conecte a la bd queme dio render(visualizar en pgAdmin 4)
@@ -129,13 +129,19 @@ async def main():
     return answer
     
 
-@app.post("/ingresar")
-def recibirProducto(request:Request):
-    data = request.json()
+#Uso pydantic para verificar que lo que recibo es el tipo de varibale que espero
+class Producto(BaseModel):
+    nombre: str
+    precio: str
+    stock: str
 
-    nombre = data["nombre"]
-    precio = data["precio"]
-    stock = dara["stock"]
+
+
+@app.post("/ingresar")
+def recibirProducto(producto: Producto):
+    nombre = producto.nombre
+    precio = producto.precio
+    stock = producto.stock
 
     insertarProductos(nombre,precio,stock)
     return {"mensaje":"se ha ingresado correctamente"}
