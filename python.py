@@ -130,7 +130,6 @@ async def main():
 
 #Uso pydantic para verificar que lo que recibo es el tipo de varibale que espero
 class Producto(BaseModel):
-    id : int
     nombre: str
     precio: int
     stock: int
@@ -147,8 +146,12 @@ def recibirProducto(producto: Producto):
     return {"mensaje":"se ha ingresado correctamente"}
 
 
+
+class ProductoId(BaseModel):
+    id: str
+
 @app.post("/borrar")
-def borrarProducto(producto:Producto):
+def borrarProducto(producto:ProductoId):
     id = producto.id
     respuesta = verProductoId(id)
     if (respuesta):
